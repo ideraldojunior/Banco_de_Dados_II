@@ -66,3 +66,9 @@ select semestre, count(*) from matricula group by(semestre);
 ## Questão 20
 select curso from aluno
 group by curso having count() > 1 
+
+## Questão 21
+select a.nome, m.situacao 
+from aluno as a
+join matricula as m on a.id = m.aluno_id 
+group by a.nome, m.situacao;
