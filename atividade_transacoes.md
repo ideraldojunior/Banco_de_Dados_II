@@ -52,12 +52,48 @@ Enquanto a transação não for concluida outras sessões não conseguem acessar
 
 **Pergunta 13**  
 O que aconteceu com a segunda transação?
+A segunta transação entrou em um estado de espera.
 
 **Pergunta 14**  
 Por que ela precisou esperar?
+Ela precisou esperar visto que a primeira ainda não havia sido concluída então o isolamento foi aplicado.
 
 **Pergunta 15**  
 Qual a função do `FOR UPDATE`?
+Serve para evitar que outra sessão altere dados que já estão sofrendo modificações mas ainda não foram confirmadas.
 
+**Pergunta 16**
+Por que nesse caso as transações tendem a não disputar o mesmo recurso?
+Porque estão acessando partes diferentes do banco de dados.
 
+**Pergunta 17**
+O que esse teste mostra sobre concorrência em linhas diferentes da tabela?
+Que o isolamento se aplica somente quando os dados que estão em disputa são os mesmos.
 
+**Pergunta 18**
+Qual é a importância de registrar movimentações além de atualizar os saldos?
+A importância é manter registrado as contas de origens, destino, valor...
+
+**Pergunta 19**
+Por que o INSERT na tabela movimentacoes deve estar na mesma transação dos UPDATEs?
+Porque caso as mudanças não sejam confirmados a inserção na tabela movimentação também nao deve ser.
+
+**Pergunta 20**
+O que poderia acontecer se o histórico fosse gravado, mas os saldos não fossem atualizados, ou vice-versa?
+O dado seria corrompido, não coerente com a realidade.
+
+**Pergunta 21**
+O que o ROLLBACK garantiu nesse cenário?
+O rollback garantiu que não fosse persistido um erro, e conservando a consistência dos dados
+
+**Pergunta 22**
+Como esse teste demonstra a propriedade de atomicidade?
+Demonstra que ao realizar uma transação que por algum motivo não foi possível concluir, garantimos que as alterações que estavam acontecendo não sejam concretizadas.
+
+**Pergunta 23**
+Como verificar se o banco permaneceu consistente após todas as operações realizadas?
+Podemos verificar se as mudanças dos valores das contas estão condizentes com as operações salvas na tabela de movimentações.
+
+**Pergunta 24**
+Por que a consistência do banco depende não apenas dos comandos SQL, mas também da forma como eles são agrupados em transações?
+Porque nem todos os comandos SQL são efetivamente concretizados no banco de dados final, dependendo se ao final de cada transação foi realizado um Rollback ou Commit.
