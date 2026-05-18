@@ -77,55 +77,55 @@ group by a.nome, m.situacao;
 select nome, curso from aluno;
 
 ## Questão 23
-SELECT aluno.nome, aluno.curso, matricula.nota
-FROM aluno 
-INNER JOIN matricula ON aluno.id = matricula.aluno_id;
+select aluno.nome, aluno.curso, matricula.nota
+from aluno 
+inner join matricula on aluno.id = matricula.aluno_id;
 
 ## Questão 24
-SELECT nome  
-FROM aluno   
-WHERE id IN (
-    SELECT matricula.aluno_id   
-    FROM matricula  
-    INNER JOIN disciplina ON matricula.disciplina_id = disciplina.id  
-    WHERE disciplina.departamento = 'Computacao'  
+select nome  
+from aluno   
+where id in (
+    select matricula.aluno_id   
+    from matricula  
+    inner join disciplina on matricula.disciplina_id = disciplina.id  
+    where disciplina.departamento = 'Computacao'  
 );
 
 ## Questão 25
-SELECT aluno.nome   
-FROM aluno   
-INNER JOIN matricula ON aluno.id = matricula.aluno_id  
-WHERE matricula.situacao = 'Reprovado';  
+select aluno.nome   
+from aluno   
+inner join matricula on aluno.id = matricula.aluno_id  
+where matricula.situacao = 'Reprovado';  
 
 ## Questão 26
-SELECT aluno.nome, disciplina.nome  
-FROM aluno  
-INNER JOIN matricula ON aluno.id = matricula.aluno_id  
-INNER JOIN disciplina ON matricula.disciplina_id = disciplina.id  
-WHERE aluno.curso = 'Computacao';  
+select aluno.nome, disciplina.nome  
+from aluno  
+inner join matricula on aluno.id = matricula.aluno_id  
+inner join disciplina on matricula.disciplina_id = disciplina.id  
+where aluno.curso = 'Computacao';  
 
 ## Questão 27
-SELECT aluno.nome, AVG(matricula.nota)  
-FROM aluno  
-INNER JOIN matricula ON aluno.id = matricula.aluno_id  
-GROUP BY aluno.nome;  
+select aluno.nome, avg(matricula.nota)  
+from aluno  
+inner join matricula on aluno.id = matricula.aluno_id  
+group by aluno.nome;  
 
 ## Questão 28
-SELECT aluno.nome, COUNT(matricula.disciplina_id)  
-FROM aluno  
-INNER JOIN matricula ON aluno.id = matricula.aluno_id  
-GROUP BY aluno.nome;  
+select aluno.nome, count(matricula.disciplina_id)  
+from aluno  
+inner join matricula on aluno.id = matricula.aluno_id  
+group by aluno.nome;  
 
 ## Questão 29
-SELECT aluno.nome  
-FROM aluno  
-INNER JOIN matricula ON aluno.id = matricula.aluno_id  
-GROUP BY aluno.nome  
-HAVING AVG(matricula.nota) > 8;  
+select aluno.nome  
+from aluno  
+inner join matricula on aluno.id = matricula.aluno_id  
+group by aluno.nome  
+having avg(matricula.nota) > 8;  
 
 ## Questão 30
-SELECT disciplina.departamento, COUNT(matricula.id)  
-FROM disciplina  
-INNER JOIN matricula ON disciplina.id = matricula.disciplina_id  
-GROUP BY disciplina.departamento;  
+select disciplina.departamento, count(matricula.id)  
+from disciplina  
+inner join matricula on disciplina.id = matricula.disciplina_id  
+group by disciplina.departamento; 
 
